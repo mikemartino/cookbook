@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "recipebook"
-version = "0.1.0"
+version = "0.1.1"
 description = "I'm writing a cookbook to learn Python, Postgresql, and other potential tools."
 authors = ["Mike Martino <mikemartino86@gmail.com>"]
 license = "Apache-2.0"
