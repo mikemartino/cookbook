@@ -5,7 +5,7 @@ description = "I'm writing a cookbook to learn Python, Postgresql, and other pot
 authors = ["Mike Martino <mikemartino86@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-repository =
+repository = "https://github.com/mikemartino/recipebook"
 
 [tool.poetry.dependencies]
 python = "^3.7"
