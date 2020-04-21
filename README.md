@@ -5,15 +5,12 @@ I'm writing a cookbook to learn Python, Postgresql, and other potential tools.
 
 # Prerequisites
 
-Install `poetry` for managing virtual environment (similar to `venv` or `pipenv`):
+Install the following software.
 
-    ```
-    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python3
-    ```
+|              pyenv             |           poetry           |
+|:------------------------------:|:--------------------------:|
+| https://github.com/pyenv/pyenv | https://python-poetry.org/ |
 
-Read more about `poetry`: https://python-poetry.org/
-
-_Optional_: I've installed `pyenv` to manage versions of Python on my system. Read more about `pyenv`: https://github.com/pyenv/pyenv
 
 # Build
 
