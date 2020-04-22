@@ -12,6 +12,8 @@ class Ingredient:
         Kilograms = "kg"
         Millilitres = "ml"
         Cups = "cup"
+        Tablespoons = "Tbsp"
+        Teaspoons = "tsp"
 
     name: str
     quantity: float
@@ -21,3 +23,9 @@ class Ingredient:
         self.name = name
         self.quantity = quantity
         self.unit = unit
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f"{self.name} ({self.quantity} {self.unit.value})"
