@@ -1,9 +1,8 @@
 #!/bin/bash -e
 
-# shellcheck disable=SC2162
-read -p "Name of the new postgres docker container: " container_name
-read -p "Name of the new postgres docker network: " network_name
-read -s -p "New password for postgres database: " account_password
+read -r -p "Name of the new postgres docker container: " container_name
+read -r -p "Name of the new postgres docker network: " network_name
+read -r -s -p "New password for postgres database: " account_password
 echo ""
 
 echo "Creating container '$container_name'..."
@@ -16,7 +15,7 @@ echo ""
 echo "Creating network '$network_name'..."
 
 docker network create "$network_name"
-docker network connect "$network_name" $(docker container ls -q -a --filter name="$container_name")
+docker network connect "$network_name" "$(docker container ls -q -a --filter name="$container_name")"
 
 echo "Created network '$network_name'..."
 echo ""
