@@ -36,8 +36,13 @@ echo ""
 docker run -e PGPASSWORD="$account_password" --rm --network "$network_name" postgres psql -h "$container_name" -U postgres -d dvdrental -c 'select * from actor limit 10;'
 
 echo "Setup complete."
+echo "psql is a PostgreSQL command line program to interact with a PostgreSQL database."
 echo ""
-echo "To interact with the database, run:"
+echo "To interact with the database from within the new PostgreSQL container, run:"
+echo ""
+echo "  docker exec -e PGPASSWORD=$account_password -it $container_name psql -U postgres -d dvdrental"
+echo ""
+echo "To connect to the container from another container, run another instance of the PostgreSQL container (so you still have access to psql):"
 echo ""
 echo "  docker run -e PGPASSWORD=$account_password -it --rm --network $network_name postgres psql -h $container_name -U postgres -d dvdrental"
 
