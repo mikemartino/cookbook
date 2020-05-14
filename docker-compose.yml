@@ -1,0 +1,8 @@
+version: '3'
+services:
+        postgres:
+                image: postgres
+                volumes:
+                        - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+                environment:
+                        - POSTGRES_PASSWORD=test

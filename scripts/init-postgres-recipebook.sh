@@ -6,7 +6,7 @@ read -r -s -p "New password for recipebook postgres database: " account_password
 echo ""
 
 echo "Creating container '$container_name'..."
-docker run --name "$container_name" -e POSTGRES_PASSWORD="$account_password" -d postgres
+docker run --name "$container_name" -p 127.0.0.1:5432:5432/tcp -e POSTGRES_PASSWORD="$account_password" -d postgres
 
 docker container ls --filter name="$container_name"
 
@@ -31,3 +31,5 @@ echo "To interact with the database, run:"
 echo ""
 echo "  docker run -e PGPASSWORD=$account_password -it --rm --network $network_name postgres psql -h $container_name -U postgres -d recipebook"
 
+# To log into the terminal:
+#  docker run -it --rm --network $network_name postgres bash
