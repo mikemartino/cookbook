@@ -1,4 +1,4 @@
-recipebook
+Recipebook
 ==========
 
 I'm writing a cookbook to learn Python, Postgresql, and other potential tools.
@@ -7,40 +7,48 @@ I'm writing a cookbook to learn Python, Postgresql, and other potential tools.
 
 Install the following software.
 
-|              pyenv             |           poetry           |
-|:------------------------------:|:--------------------------:|
-| https://github.com/pyenv/pyenv | https://python-poetry.org/ |
+`pyenv`: https://github.com/pyenv/pyenv <br/>
+`poetry`: https://python-poetry.org/ <br/>
+`docker-compose`: https://docs.docker.com/compose/install/
 
 
-# Build
+# Commands
 
+#### Build
 ```
 poetry install
 poetry run example
 ```
-
-# Package
-
+#### Package
 ```
 poetry build
 ```
 
-# Deploy
-
+#### Deploy to PyPi
 ```
 poetry publish
 ```
 
 # Database Initialization
+```    
+cd recipebook
+docker-compose up -d # Takes a minute to start up after detaching
+```
 
-Followed initial instructions on [Docker Postgresql](https://hub.docker.com/_/postgres?tab=description).
+# Browse database
+1. Log into the database container using `psql`:
 
-1. Install `docker-compose`.
-1. Run:
-        docker-compose up -d
-        docker-compose exec -e PGPASSWORD=test postgres psql -U postgres -d postgres
+        docker-compose exec -e PGPASSWORD=postgres postgres psql -U postgres -d postgres
 
-   The `exec` command runs the `psql` program and logs you into the default database called __postgres__.
-1. Prepend the recipebook schema if you don't want to namespace all of your commands. Run this from the `psql` prompt:
+1. In the `psql` prompt, prepend the _recipebook_ schema to your `search_path` to avoid referring to the namespace everywhere:
+
         SELECT set_config('search_path', 'recipebook, '||current_setting('search_path'), false);
 
+# Teardown
+Run _one_ of these commands:
+    
+    # Does not remove Docker volumes (data)
+    docker-compose down   
+
+    # Removes Docker volumes (data)
+    docker-compose down -v
