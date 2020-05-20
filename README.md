@@ -50,5 +50,5 @@ Run _one_ of these commands:
     # Does not remove Docker volumes (data)
     docker-compose down   
 
-    # Removes Docker volumes (data)
+    # Removes Docker volumes
     docker-compose down -v
