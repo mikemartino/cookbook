@@ -8,7 +8,7 @@ CREATE TABLE cook (
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT NOT NULL,
-    UNIQUE (first_name, last_name, email)
+    CONSTRAINT unq_email UNIQUE (email)
 );
 
 -- INGREDIENT
@@ -16,8 +16,7 @@ CREATE TABLE ingredient (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     quantity NUMERIC NOT NULL,
-    unit TEXT,
-    display_order INT NOT NULL
+    unit TEXT
 );
 
 -- RECIPE
@@ -35,6 +34,7 @@ CREATE TABLE recipe (
 CREATE TABLE recipe_ingredient (
     recipe_id INT REFERENCES recipe (id),
     ingredient_id INT REFERENCES ingredient (id),
+    display_order INT NOT NULL,
     PRIMARY KEY (recipe_id, ingredient_id)
 );
 
