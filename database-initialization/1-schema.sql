@@ -54,13 +54,12 @@ CREATE TABLE recipe_image (
 
 CREATE OR REPLACE VIEW recipe_details AS
   SELECT
-    r.name AS recipe_name,
-    c.first_name AS first_name,
-    c.last_name AS last_name ,
-    ARRAY_AGG(i.name || ' (' || i.quantity || i.unit || ')') AS ingredients
+    r.name AS name, r.preface, r.created_at, r.cook_time, r.instructions,
+    c.first_name, c.last_name, c.email,
+    ARRAY_AGG(i.name || ' (' || i.quantity || ' ' || i.unit || ')') AS ingredients
   FROM recipe AS r
   INNER JOIN cook AS c ON r.cook_id = c.id
   INNER JOIN recipe_ingredient AS ri ON r.id = ri.recipe_id
   INNER JOIN ingredient AS i ON ri.ingredient_id = i.id
-  GROUP BY r.name, c.first_name, c.last_name;
+  GROUP BY r.name, r.preface, r.created_at, r.cook_time, r.instructions, c.first_name, c.last_name, c.email;
 

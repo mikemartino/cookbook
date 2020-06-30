@@ -27,19 +27,19 @@ CALL save_recipe(
     'Cook about 8 to 10 minutes on one side and 6 to 8 minutes on other side.',
     'Serve on hamburger buns topped with pickles, red onion, and mayonaise.'
   ],
-  '(0, Chickpeas, 1, can, 1)',
-  '(0, Oatmeal, 1, cup, 2)',
-  '(0, "Red onion", 0.5, medium, 3)',
-  '(0, Zucchini, 1, medium, 4)',
-  '(0, "Peanut butter", 3, tbsp, 5)',
-  '(0, Cilantro, 2, tbsp, 6)',
-  '(0, Siracha, 1, tbsp, 7)',
-  '(0, Cumin, 1, tsp, 8)',
-  '(0, "Garlic powder", 1, tsp, 9)',
-  '(0, "Red wine vinegar", 2, tbsp, 10)',
-  '(0, "Olive oil", 2, tbsp, 11)',
-  '(0, Pickles, 1, sliced, 12)',
-  '(0, Mayonaise, 1, tbsp, 13)'
+  '(0,Chickpeas,1,can,1)',
+  '(0,Oatmeal,1,cup,2)',
+  '(0,"Red onion",0.5,medium,3)',
+  '(0,Zucchini,1,medium,4)',
+  '(0,"Peanut butter",3,tbsp,5)',
+  '(0,Cilantro,2,tbsp,6)',
+  '(0,Siracha,1,tbsp,7)',
+  '(0,Cumin,1,tsp,8)',
+  '(0,"Garlic powder",1,tsp,9)',
+  '(0,"Red wine vinegar",2,tbsp,10)',
+  '(0,"Olive oil",2,tbsp,11)',
+  '(0,Pickles,1,sliced,12)',
+  '(0,Mayonaise,1,tbsp,13)'
 );
 
 
