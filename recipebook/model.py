@@ -11,30 +11,24 @@ from typing import List, Dict, Any, Optional
 
 @dataclass
 class Cook:
-    id: int
     first_name: str
     last_name: str
     email: str
-
-    @staticmethod
-    def from_row(row: Dict[Any, Any]) -> Cook:
-        return Cook(id=row.get('cook_id'),
-                    first_name=row.get('first_name'),
-                    last_name=row.get('last_name'),
-                    email=row.get('email'))
 
 
 @dataclass
 class Ingredient:
     name: str
-    quantity: Decimal
-    unit: Optional[str] = None
+    quantity: str
+
+    def __str__(self):
+        return f"{self.name} ({self.quantity})"
 
 
 @dataclass
 class Recipe:
-    id: int
     name: str
+    preface: str
     cook: Cook
     created_at: datetime
     cook_time: timedelta
@@ -43,18 +37,16 @@ class Recipe:
 
     @staticmethod
     def from_row(row: Dict[Any, Any]) -> Recipe:
-        cook = Cook.from_row(row)
+        cook = Cook(first_name=row['first_name'], last_name=row['last_name'], email=row['email'])
+        ingredients: List[Ingredient] = list()
 
+        for ingredient_str in row['ingredients']:
+            ingredient_name, ingredient_quantity = ingredient_str.split('(')
+            ingredients.append(Ingredient(ingredient_name.strip(), ingredient_quantity.replace(')', '')))
 
-        You need to insert a lot of data into multiple tables at the same time to save a recipe (e.g. cook, recipe, join tables, etc.).
-        You're going to write a stored procedure that does it all (e.g. save_recipe). You were trying to decide whether you'd
-        create custom types in postgres or just use TABLE%TYPE for the function parameters. Pretty sure the latter make more sense
-        for now at least. Do that. Don't second guess this decision in the morning. - You.
-
-
-        return Recipe(id=row['id'], name=row['name'], cook=cook, created_at=row['created_at'],
-                      cook_time=row['cook_time'], instructions=row['instructions'],
-                      ingredients=row['ingredients'])
+        return Recipe(name=row['name'], cook=cook, preface=row['preface'],
+                      created_at=row['created_at'], cook_time=row['cook_time'],
+                      instructions=row['instructions'], ingredients=ingredients)
 
     def join_instructions(self):
         result = ""
@@ -67,3 +59,12 @@ class Recipe:
         for ingredient in self.ingredients:
             result += f"- {ingredient}\n"
         return result
+
+    def __str__(self):
+        return f"Name: {self.name}\n" \
+               f"Cook: {self.cook.first_name} {self.cook.last_name} ({self.cook.email})\n" \
+               f"Cook time: {self.cook_time}\n" \
+               f"Created on: {datetime.strftime(self.created_at, '%c')} \n" \
+               f"Preface: {self.preface} \n\n" \
+               f"Ingredients: \n{self.join_ingredients()}\n"\
+               f"Instructions: \n{self.join_instructions()}\n"

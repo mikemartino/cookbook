@@ -3,8 +3,8 @@ from recipebook.service.recipe_service import RecipeService
 
 def main():
     recipe_service = RecipeService()
-    recipe = recipe_service.get_by_name("Chickpea Burgers")
-    print(recipe)
+    recipes = recipe_service.list_recipes()
+    [print(r) for r in recipes]
 
 
 if __name__ == '__main__':
